@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+            * {box-sizing: border-box}
+    body {font-family: Verdana, sans-serif; margin:0}
+    .mySlides {display: none}
+    img {vertical-align: middle;}
+    
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 600px;
+      position: relative;
+      margin: auto;
+    }
+    
+    /* Next & previous buttons */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+    
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+    
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    
+    /* Caption text */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+    
+    /* The dots/bullets/indicators */
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+    
+    .active, .dot:hover {
+      background-color: #717171;
+    }
+    
+    /* Fading animation */
+    .fade {
+      -webkit-animation-name: fade;
+      -webkit-animation-duration:5s;
+      animation-name: fade;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+    }
+    
+    @-webkit-keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+    
+    @keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+    
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+      .prev, .next,.text {font-size: 11px}
+    }
+
+    .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 30px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.vm{
+    text-align:center;
+     background-color:white;
+      border:2px solid black; 
+      font-size:200%;
+      font-family: Comic Sans MS;
+      -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.vm:hover{
+background-color:black;
+color:white;
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+padding-right:10%;
+}
+
+.blurb{
+    background-image: url("text2.jpg");
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default" style="background:#111; position:fixed; z-index:1">
+        <div class="container-fluid">
+        <!--  <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="logo.png" style="width:13%; border-radius:10%"></a>
+          </div>-->
+          <div class="row">
+              
+              <div class="col-sm-1"><div id="mySidenav" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                    <h1 style="padding: 8px 8px 8px 32px; text-decoration: none;font-size: 25px;color:white;display: block;transition: 0.3s">Toll Free Numbers</h1>
+                    <a href="#">Airlines</a>
+                    <a href="#">Banks</a>
+                    <a href="#">Automobiles</a>
+                    <a href="#">Computers/IT</a>
+                    <a href="#">Indian Railways</a>
+                    <a href="#">Movers</a>
+                    <a href="#">Home Appliances</a>
+                    <a href="#">Investments</a>
+                    <a href="#">Leisure Travels</a>
+                    <a href="#">Healthcare</a>
+                    <a href="#">Insurance</a>
+                </div><img src="snv2.png" onclick="openNav()" style="width:100%; padding-top:20%;border-radius:10%"></div>
+                <div class="col-sm-1">
+                <a href="#"><img src="logo.png" style="max-width:100%; padding-top:10%"></a>
+                </div>
+         <div class="col-sm-9">
+              <ul class="nav navbar-nav">
+            <li><a href="#"><h1 style="font-size:120%; color:white; padding-left:100%"><b>Profile</b></h1></a></li>
+            <li><a href="#"><h1 style="font-size:120%; color:white; padding-left:100%"><b>Career</b></h1></a></li>
+            <li><a href="#"><h1 style="font-size:120%; color:white; padding-left:100%"><b>Training</b></h1></a></li>
+            <li><a href="#"><h1 style="font-size:120%; color:white; padding-left:100%"><b>Rozkamao</b></h1></a></li>
+            <li><a href="#"><h1 style="font-size:120%; color:white; padding-left:170%"><b>Service</b></h1></a></li>
+            <li><a href="#"><h1 style="font-size:120%; color:white; padding-left:200%"><b>Contact</b></h1></a></li>
+            <li><a href="#"><h1 style="font-size:120%; color:white; padding-left:550%"><b>LOGIN</b></h1></a></li>
+          </ul>
+        
+        </div>
+        </div>
+      </nav>
+      <div class="blurb">
+      <div class="slideshow-container" style="background-color:white">
+
+            <div class="mySlides fade">
+              
+              <img src="building1.jpg" style="width:100%">
+              
+            </div>
+            
+            <div class="mySlides fade">
+            
+              <img src="building2.jpg" style="width:100%">
+              
+            </div>
+            
+            <div class="mySlides fade">
+              
+              <img src="building3.png" style="width:100%">
+              
+            </div>
+            
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            
+            </div>
+            <br>
+            
+            <div style="text-align:center">
+              <span class="dot" onclick="currentSlide(1)"></span> 
+              <span class="dot" onclick="currentSlide(2)"></span> 
+              <span class="dot" onclick="currentSlide(3)"></span> 
+            </div>
+            </div>
+        </div>
+        <div class="row" style="background: white">
+            <h1 style="text-align:center; font-family:Trebuchet MS; color:black"><b>TODAY'S OFFERS</b></h1>
+            <div class="col-sm-2" style="padding:5%">
+            <div class="col-sm-2" style="padding:5%">
+                <table style="width:100%; border:1px solid black; background-color:white; box-shadow:3px 3px grey">
+                    <tr>
+                      <th style="text-align:center; border:0.5px solid black"><img src="jabong.png" style="max-width:90%"></th>
+                    </tr>
+                    <tr>
+                      <td><h2 style="text-align:center; font-family:Comic Sans MS">jabong.com</h2></td>
+                    </tr>
+                    <tr>
+                      <td style="text-align:center; padding:5%"><img src="like4.png"; style="max-width:50%; box-shadow:0.5px 0.5px grey"></td>
+                    </tr>
+                  </table></div></div>
+            <div class="col-sm-2" style="padding:5%"> 
+                    <div class="col-sm-3" style="padding:5%">
+                        <table style="width:100%; border:0.5px solid black; background-color:white;box-shadow:3px 3px grey">
+                            <tr style>
+                              <th style="text-align:center; border:1px solid black;"><img src="myntra2.png" style="max-width:80%; max-height:50%"></th>
+                            </tr>
+                            <tr>
+                              <td><h2 style="text-align:center; font-family:Comic Sans MS">myntra.com</h2></td>
+                            </tr>
+                            <tr>
+                              <td style="text-align:center; padding:5%"><img src="like4.png"; style="max-width:50%;box-shadow:0.5px 0.5px grey"></td>
+                            </tr>
+                          </table></div>
+            </div>
+            <div class="col-sm-2" style="padding:5%">
+                    <div class="col-sm-3" style="padding:5%">
+                        <table style="width:100%; border:0.5px solid black;background-color:white;box-shadow:3px 3px grey">
+                            <tr>
+                              <th style="text-align:center; border:1px solid black"><img src="pepperfry.png" style="max-width:100%"></th>
+                            </tr>
+                            <tr>
+                              <td><h2 style="text-align:center; font-family:Comic Sans MS">Pepperfry</h2></td>
+                            </tr>
+                            <tr>
+                              <td style="text-align:center; padding:5%"><img src="like4.png"; style="max-width:50%;box-shadow:0.5px 0.5px grey"></td>
+                            </tr>
+                          </table></div>
+            </div>
+            <div class="col-sm-2" style="padding:5%">
+                    <div class="col-sm-2" style="padding:5%">
+                        <table style="width:100%; border:0.5px solid black; background-color:white;box-shadow:3px 3px grey">
+                            <tr>
+                              <th style="text-align:center; border:1px solid black;"><img src="lenskart.jpg" style="max-width:80%;"></th>
+                            </tr>
+                            <tr>
+                              <td><h2 style="text-align:center; font-family:Comic Sans MS">Lenskart</h2></td>
+                            </tr>
+                            <tr>
+                              <td style="text-align:center; padding:5%"><img src="like4.png"; style="max-width:50%;box-shadow:0.5px 0.5px grey"></td>
+                            </tr>
+                          </table>
+                        </div>
+            </div>
+            <div class="col-sm-2" style="padding:5%">
+                    <div class="col-sm-2" style="padding:5%">
+                        <table style="width:100%; border:1px solid black;background-color:white;box-shadow:3px 3px grey">
+                            <tr>
+                              <th style="text-align:center;border:1px solid black"><img src="shopclues.png" style="max-width:60%; max-height:20%"></th>
+                            </tr>
+                            <tr>
+                              <td><h2 style="text-align:center; font-family:Comic Sans MS">Shopclues</h2></td>
+                            </tr>
+                            <tr>
+                              <td style="text-align:center; padding:5%"><img src="like4.png"; style="max-width:50%;box-shadow:0.5px 0.5px grey"></td>
+                            </tr>
+                          </table>
+                        </div>
+            </div>
+            <div class="col-sm-2" style="padding:5%">
+                    <div class="col-sm-2" style="padding:5%">
+                        <table style="width:100%; border:0.5px solid black; background-color:white;box-shadow:3px 3px grey">
+                            <tr>
+                              <th style="text-align:center; border:1px solid black;"><img src="expedia.png" style="max-width:100%;"></th>
+                            </tr>
+                            <tr>
+                              <td><h2 style="text-align:center; font-family:Comic Sans MS">Expedia</h2></td>
+                            </tr>
+                            <tr>
+                              <td style="text-align:center; padding:5%"><img src="like4.png"; style="max-width:70%;box-shadow:0.5px 0.5px grey"></td>
+                            </tr>
+                          </table>
+                        </div>
+            </div>
+        </div>
+       
+        <div class="row" style="background: white">
+                <div class="col-sm-3" style="padding-left:10%;padding-right:5%;padding-bottom:5%">
+                        <div class="col-sm-3" style="padding-left:6%;padding-right:5%;padding-bottom:5%">
+                            <table style="width:100%; border:0.5px solid black;background-color:white;box-shadow:3px 3px grey">
+                                <tr>
+                                  <th style="text-align:center;border:1px solid black;"><img src="makemytrip.png" style="max-width:70%"></th>
+                                </tr>
+                                <tr>
+                                  <td><h2 style="text-align:center; font-family:Comic Sans MS">makemytrip</h2></td>
+                                </tr>
+                                <tr>
+                                  <td style="text-align:center; padding:5%"><img src="like4.png"; style="max-width:50%;box-shadow:0.5px 0.5px grey"></td>
+                                </tr>
+                              </table>
+                            </div>
+                </div>
+                <div class="col-sm-3" style="padding-left:8.5%;padding-right:5%;padding-bottom:5%">
+                        <div class="col-sm-3" style="padding-left:8.5%;padding-right:5%;padding-bottom:5%">
+                            <table style="width:100%; border:0.5px solid black;background-color:white;box-shadow:3px 3px grey">
+                                <tr>
+                                  <th style="text-align:center;border:1px solid black;"><img src="naptol.png" style="max-width:50%"></th>
+                                </tr>
+                                <tr>
+                                  <td><h2 style="text-align:center; font-family:Comic Sans MS">naaptol.com</h2></td>
+                                </tr>
+                                <tr>
+                                  <td style="text-align:center; padding:5%"><img src="like4.png"; style="max-width:50%;box-shadow:0.5px 0.5px grey"></td>
+                                </tr>
+                              </table>
+                            </div>
+                </div>
+                <div class="col-sm-3" style="padding-left:8%;padding-right:5%;padding-bottom:5%">
+                        <div class="col-sm-3" style="padding-left:8%;padding-right:5%;padding-bottom:5%">
+                            <table style="width:100%; border:0.5px solid black; background-color:white;box-shadow:3px 3px grey">
+                                <tr>
+                                  <th style="text-align:center; border:1px solid black;"><img src="fabfurnish.png" style="max-width:100%;"></th>
+                                </tr>
+                                <tr>
+                                  <td><h2 style="text-align:center; font-family:Comic Sans MS">Fabfurnish</h2></td>
+                                </tr>
+                                <tr>
+                                  <td style="text-align:center; padding:5%"><img src="like4.png"; style="max-width:60%;box-shadow:0.5px 0.5px grey"></td>
+                                </tr>
+                              </table>
+                            </div>
+                </div>
+                <div class="col-sm-3" style="padding-left:5%;padding-right:5%;padding-bottom:5%">
+                        <div class="col-sm-3" style="padding-left:5%;padding-right:5%;padding-bottom:5%">
+                            <table style="width:100%; border:0.5px solid black;background-color:white;box-shadow:3px 3px grey">
+                                <tr>
+                                  <th style="text-align:center;border:1px solid black"><img src="foodpanda.png" style="max-width:100%"></th>
+                                </tr>
+                                <tr>
+                                  <td><h2 style="text-align:center; font-family:Comic Sans MS">foodpanda</h2></td>
+                                </tr>
+                                <tr>
+                                  <td style="text-align:center; padding:5%"><img src="like4.png"; style="max-width:50%;box-shadow:0.5px 0.5px grey"></td>
+                                </tr>
+                              </table>
+                            </div>
+                </div>
+                <div style="text-align:center; padding:1%"><button class="vm">View More&rarr;</button></div>
+        </div>
+        
+<script>
+    
+    function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+ var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+var i;
+var slides = document.getElementsByClassName("mySlides");
+var dots = document.getElementsByClassName("dot");
+if (n > slides.length) {slideIndex = 1}    
+if (n < 1) {slideIndex = slides.length}
+for (i = 0; i < slides.length; i++) {
+  slides[i].style.display = "none";  
+}
+for (i = 0; i < dots.length; i++) {
+  dots[i].className = dots[i].className.replace(" active", "");
+}
+slides[slideIndex-1].style.display = "block";  
+dots[slideIndex-1].className += " active";
+}
+</script>
+    
+
+</body>
+</html>
